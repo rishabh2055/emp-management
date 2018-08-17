@@ -6,9 +6,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-	{path: 'login', component: 'LoginComponent'},
-	{path: 'signup', loadChildren: './users/users.module#LoginModule'},
-	{path: 'dashboard', component: 'DashboardComponent'},
+	{path: 'login', component: LoginComponent},
+	{path: 'signup', loadChildren: './users/users.module#UsersModule'},
+	{path: 'dashboard', component: DashboardComponent},
 	{path: 'departments', loadChildren: './departments/departments.module#DepartmentsModule'},
 	{path: 'projects', loadChildren: './projects/projects.module#ProjectsModule'},
 	{path: 'grades', loadChildren: './grades/grades.module#GradesModule'},

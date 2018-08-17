@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  public isCollapsed: boolean = false;
+  public isSideBarCollapsed: boolean = false;
+  public isUserDropDownCollapsed: boolean = false;
+  public isSideMenuCollapsed: boolean = false;
 }
