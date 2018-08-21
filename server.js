@@ -5,6 +5,10 @@ let express = require('express'),
 	mongoose = require('mongoose'),
 	config = require('./server/config/database');
 
+const app = express();
+
+global.APP_PATH = path.resolve(__dirname);
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB).then(
 	() => {console.log('db is connected')},
@@ -24,9 +28,9 @@ app.use((req, res, next) => {
 
 // Requiring Routes into the application
 var index = require('./server/routes/index');
-var users = require('./server/routes/departments');
+var departments = require('./server/routes/departments');
 app.use('/', index);
-app.use('/users', users);
+app.use('/departments', departments);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -46,8 +50,6 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-
-const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 let port = process.env.PORT | 4000;
