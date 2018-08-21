@@ -6,23 +6,11 @@
             <h3>Employee Management</h3>
         </div>
         <ul class="list-unstyled components">
-          <li routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['dashboard']">
-              <i class="fa fa-fw fa-dashboard"></i>
-              <span class="nav-link-text">Dashboard</span>
-            </a>
-          </li>
-          <li routerLinkActive="active">
-            <a data-toggle="collapse" (click)="isSideMenuCollapsed = !isSideMenuCollapsed" [attr.aria-expanded]="isSideMenuCollapsed" class="dropdown-toggle">
-              <i class="fa fa-fw fa-home"></i>
-              <span class="nav-link-text">Departments</span>
-            </a>
-            <ul class="collapse list-unstyled" [ngbCollapse] = "!isSideMenuCollapsed">
-                <li>
-                    <a [routerLink]="['departments/add']">Add new department</a>
-                </li>
-                <li>
-                    <a [routerLink]="['departments']">Departments</a>
+          <li [ngClass]="{'active': menu.isActive}" *ngFor="let menu of sideMenuLinks">
+            <ng-container [ngTemplateOutlet]="menu.children.length > 0 ? menu_submenu_link : menu_link" [ngTemplateOutletContext]="{menu:menu}"></ng-container>
+            <ul *ngIf="menu.children.length > 0" class="collapse list-unstyled" [ngbCollapse] = "!menu.isCollapsed">
+                <li *ngFor="let submenu of menu.children">
+                    <a [routerLink]="submenu.url">{{submenu.submenu}}</a>
                 </li>
             </ul>
           </li>
@@ -60,4 +48,16 @@
 
 </div> 
 
+<ng-template #menu_submenu_link let-menu="menu">
+  <a data-toggle="collapse" (click)="collapseSideMenu(menu)" [attr.aria-expanded]="menu.isCollapsed" class="dropdown-toggle"> 
+    <i class="fa fa-fw fa-{{menu.icon}}"></i>
+    <span class="nav-link-text">{{menu.menu}}</span>
+  </a>
+</ng-template>
+<ng-template #menu_link let-menu="menu">
+  <a class="nav-link" [routerLink]="menu.url" (click)="collapseSideMenu(menu)">  
+    <i class="fa fa-fw fa-{{menu.icon}}"></i>
+    <span class="nav-link-text">{{menu.menu}}</span>
+  </a>
+</ng-template>
 

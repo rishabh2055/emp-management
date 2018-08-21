@@ -11,7 +11,7 @@ import {DepartmentListComponent} from './department-list.component';
 				path: '',
 				component: DepartmentsComponent,
 				children: [
-					{path: '', component: DepartmentListComponent}
+					{path: '', component: DepartmentListComponent},
 					{path: 'add', component: DepartmentAddComponent}
 				]
 			}])

@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {DepartmentsComponent} from './departments.component';
 
 
 @Component({
-	templateUrl: './department-add.component.html'
+	templateUrl: './department-add.component.html',
+	styleUrls: ['./departments.component.css']
 })
 
-export class DepartmentAddComponent extends DepartmentsComponent implements OnInit{
+export class DepartmentAddComponent implements OnInit{
 	constructor(){
-		super();
+		
 	}
 	ngOnInit(){
-		this.currentRoute = 'add';
+		
 	}
 }

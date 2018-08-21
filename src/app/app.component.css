@@ -111,3 +111,10 @@ ul ul a {
 .sidebar-header h3{
 	font-size: 18px;
 }
+.nav-link-text{
+    margin-left: 5px;
+    font-size: 15px;
+}
+.fa-fw{
+    font-size:13px;
+}

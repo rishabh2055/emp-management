@@ -1,1 +1,32 @@
-<h1>List</h1>
+<h3 class="top-heading">Departments list</h3>
+<div class="row">
+	<div class="col-auto mr-auto"></div>
+	<div class="col-auto">
+		<input type="text" class="form-control" [(ngModel)]="filter" name="filterDepartment" id="filterDepartment" placeholder="Search here...">
+	</div>
+</div>
+<div class="table-responsive employee-forms">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col" (click)="sort('departmentID')">Department ID
+            <i class="fa" *ngIf="key =='departmentID'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+	      <th scope="col" (click)="sort('departmentName')">Name
+            <i class="fa" *ngIf="key =='departmentName'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+	      <th scope="col" (click)="sort('description')">Description
+            <i class="fa" *ngIf="key =='description'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let dept of departments | orderBy: key: reverse | filter: filter | paginate: {itemsPerPage: 5, currentPage: page}">
+	      <td>{{dept.departmentID}}</td>
+	      <td>{{dept.departmentName}}</td>
+	      <td>{{dept.description}}</td>
+	    </tr>
+	  </tbody>
+	</table>
+	<pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
