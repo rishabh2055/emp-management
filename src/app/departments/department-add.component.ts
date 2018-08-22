@@ -52,7 +52,7 @@ export class DepartmentAddComponent implements OnInit{
     }
 
     onSubmit(){
-    	this.submitted = true;
+    	this.submitted = true;debugger
     	this.spinnerService.show();
     	this.commonService.addNewDepartment(this.departmentObj).subscribe(
     			data => {

@@ -6,7 +6,6 @@ import {Ng2OrderModule} from 'ng2-order-pipe';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import {DepartmentsRoutingModule} from './departments-routing.module';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import {DepartmentsComponent} from './departments.component';
 import {DepartmentAddComponent} from './department-add.component';
@@ -20,8 +19,7 @@ import {DepartmentListComponent} from './department-list.component';
 		Ng2SearchPipeModule, 
 		Ng2OrderModule,
 		FormsModule,
-		ReactiveFormsModule,
-		Ng4LoadingSpinnerModule
+		ReactiveFormsModule
 		],
 	declarations: [DepartmentsComponent, DepartmentAddComponent, DepartmentListComponent]
 })
