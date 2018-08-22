@@ -3,6 +3,8 @@ let router = express.Router();
 
 let controller = require(APP_PATH+'/server/controllers/Departments');
 
-router.post('/save_department', controller.addNewDepartment);
+router.get('/get_dept_id', controller.getDepartmentID);
+router.post('/new_dept', controller.addNewDepartment);
+router.post('/list_dept', controller.getAllDepartments);
 
 module.exports = router;
