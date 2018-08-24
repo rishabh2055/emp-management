@@ -1,5 +1,12 @@
 import {Component, OnInit} from '@angular/core';
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {DepartmentsComponent} from './departments.component';
+import {Departments} from './departments';
+import {DepartmentEditComponent} from './department-edit.component';
+
+import {CommonService} from '../common.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 
 
 @Component({
@@ -8,62 +15,43 @@ import {DepartmentsComponent} from './departments.component';
 })
 
 export class DepartmentListComponent implements OnInit{
-	private departments: Array<any> = [
-		{departmentID: 'DEPT01', departmentName: 'Department 1', description: 'Description description'},
-		{departmentID: 'DEPT02', departmentName: 'Department 2', description: 'Description description'},
-		{departmentID: 'DEPT03', departmentName: 'Department 3', description: 'Description description'},
-		{departmentID: 'DEPT04', departmentName: 'Department 4', description: 'Description description'},
-		{departmentID: 'DEPT05', departmentName: 'Department 5', description: 'Description description'},
-		{departmentID: 'DEPT06', departmentName: 'Department 6', description: 'Description description'},
-		{departmentID: 'DEPT07', departmentName: 'Department 7', description: 'Description description'},
-		{departmentID: 'DEPT08', departmentName: 'Department 8', description: 'Description description'},
-		{departmentID: 'DEPT09', departmentName: 'Department 9', description: 'Description description'},
-		{departmentID: 'DEPT10', departmentName: 'Department 10', description: 'Description description'},
-		{departmentID: 'DEPT11', departmentName: 'Department 11', description: 'Description description'},
-		{departmentID: 'DEPT12', departmentName: 'Department 12', description: 'Description description'},
-		{departmentID: 'DEPT13', departmentName: 'Department 13', description: 'Description description'},
-		{departmentID: 'DEPT14', departmentName: 'Department 14', description: 'Description description'},
-		{departmentID: 'DEPT01', departmentName: 'Department 1', description: 'Description description'},
-		{departmentID: 'DEPT02', departmentName: 'Department 2', description: 'Description description'},
-		{departmentID: 'DEPT03', departmentName: 'Department 3', description: 'Description description'},
-		{departmentID: 'DEPT04', departmentName: 'Department 4', description: 'Description description'},
-		{departmentID: 'DEPT05', departmentName: 'Department 5', description: 'Description description'},
-		{departmentID: 'DEPT06', departmentName: 'Department 6', description: 'Description description'},
-		{departmentID: 'DEPT07', departmentName: 'Department 7', description: 'Description description'},
-		{departmentID: 'DEPT08', departmentName: 'Department 8', description: 'Description description'},
-		{departmentID: 'DEPT09', departmentName: 'Department 9', description: 'Description description'},
-		{departmentID: 'DEPT10', departmentName: 'Department 10', description: 'Description description'},
-		{departmentID: 'DEPT11', departmentName: 'Department 11', description: 'Description description'},
-		{departmentID: 'DEPT12', departmentName: 'Department 12', description: 'Description description'},
-		{departmentID: 'DEPT13', departmentName: 'Department 13', description: 'Description description'},
-		{departmentID: 'DEPT14', departmentName: 'Department 14', description: 'Description description'},
-		{departmentID: 'DEPT01', departmentName: 'Department 1', description: 'Description description'},
-		{departmentID: 'DEPT02', departmentName: 'Department 2', description: 'Description description'},
-		{departmentID: 'DEPT03', departmentName: 'Department 3', description: 'Description description'},
-		{departmentID: 'DEPT04', departmentName: 'Department 4', description: 'Description description'},
-		{departmentID: 'DEPT05', departmentName: 'Department 5', description: 'Description description'},
-		{departmentID: 'DEPT06', departmentName: 'Department 6', description: 'Description description'},
-		{departmentID: 'DEPT07', departmentName: 'Department 7', description: 'Description description'},
-		{departmentID: 'DEPT08', departmentName: 'Department 8', description: 'Description description'},
-		{departmentID: 'DEPT09', departmentName: 'Department 9', description: 'Description description'},
-		{departmentID: 'DEPT10', departmentName: 'Department 10', description: 'Description description'},
-		{departmentID: 'DEPT11', departmentName: 'Department 11', description: 'Description description'},
-		{departmentID: 'DEPT12', departmentName: 'Department 12', description: 'Description description'},
-		{departmentID: 'DEPT13', departmentName: 'Department 13', description: 'Description description'},
-		{departmentID: 'DEPT14', departmentName: 'Department 14', description: 'Description description'}
-	];
+	private departments: Array<Departments[]> = [];
 	private page: number = 1;
 	private totalPages: number = 14;
 	private key: string = 'departmentID';
 	private reverse: boolean = false;
-	constructor(){
+	constructor(
+		private commonService: CommonService, 
+		private spinnerService: Ng4LoadingSpinnerService,
+		private modalService: NgbModal
+		){
 		
 	}
 	ngOnInit(){
-		
+		this.getAllDepartments();
+	}
+	getAllDepartments(){
+		this.spinnerService.show();
+    	this.commonService.getAllDepartments()
+    		.subscribe(
+    				data => {
+    					this.departments = data.departments;
+    					this.spinnerService.hide();
+    				},
+    				error => {
+    					this.spinnerService.hide();
+    				}
+    			)
 	}
 	sort(key){
 		this.key = key;
 		this.reverse = !this.reverse;
+	}
+	openModal(deptObj){
+		const modalRefs = this.modalService.open(DepartmentEditComponent, { size: 'lg' });
+		modalRefs.componentInstance.departmentObj = deptObj;
+	}
+	updateDepartmentCallBack(){debugger
+		this.getAllDepartments();
 	}
 }

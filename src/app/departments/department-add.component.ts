@@ -42,6 +42,7 @@ export class DepartmentAddComponent implements OnInit{
     				data => {
     					this.errMsg = '';
     					this.departmentObj = {departmentID: data.departmentId, departmentName: '', departmentDesc: ''};
+                        this.departmentFormGroup.get('departmentID').setValue(data.departmentId);
     					this.spinnerService.hide();
     				},
     				error => {
@@ -52,19 +53,20 @@ export class DepartmentAddComponent implements OnInit{
     }
 
     onSubmit(){
-    	this.submitted = true;debugger
+    	this.submitted = true;
     	this.spinnerService.show();
-    	this.commonService.addNewDepartment(this.departmentObj).subscribe(
-    			data => {
-    				this.errMsg = '';
-    				this.successMsg = data.message;
-    				this.getDepartmentID();
-    			},
-    			error => {
-    				this.successMsg = '';
-    				this.errMsg = error.error.message.message;
-    				this.spinnerService.hide();
-    			}
-    		)
+    	this.commonService.addNewDepartment(this.departmentFormGroup.getRawValue()).subscribe(
+			data => {
+				this.errMsg = '';
+				this.successMsg = data.message;
+                this.departmentFormGroup.reset();
+				this.getDepartmentID();
+			},
+			error => {
+				this.successMsg = '';
+				this.errMsg = error.error.message.message;
+				this.spinnerService.hide();
+			}
+		)
     }
 }

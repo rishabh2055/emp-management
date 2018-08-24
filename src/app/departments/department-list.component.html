@@ -9,22 +9,31 @@
 	<table class="table table-striped">
 	  <thead>
 	    <tr>
-	      <th scope="col" (click)="sort('departmentID')">Department ID
-            <i class="fa" *ngIf="key =='departmentID'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+	      <th scope="col" (click)="sort('departmentId')">Department ID
+            <i class="fa" *ngIf="key =='departmentId'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
           </th>
 	      <th scope="col" (click)="sort('departmentName')">Name
             <i class="fa" *ngIf="key =='departmentName'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
           </th>
-	      <th scope="col" (click)="sort('description')">Description
-            <i class="fa" *ngIf="key =='description'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+	      <th scope="col" (click)="sort('departmentDesc')">Description
+            <i class="fa" *ngIf="key =='departmentDesc'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
           </th>
+          <th scope="col" (click)="sort('createdOn')">Created At
+            <i class="fa" *ngIf="key =='createdOn'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+          <th scope="col">Actions</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr *ngFor="let dept of departments | orderBy: key: reverse | filter: filter | paginate: {itemsPerPage: 5, currentPage: page}">
-	      <td>{{dept.departmentID}}</td>
+	      <td>{{dept.departmentId}}</td>
 	      <td>{{dept.departmentName}}</td>
-	      <td>{{dept.description}}</td>
+	      <td>{{dept.departmentDesc}}</td>
+	      <td>{{dept.createdOn | date: 'medium'}}</td>
+	      <td>
+	      	<button type="button" class="btn btn-outline-primary action-buttons" (click)="openModal(dept)"><i class="fa fa-edit"></i></button>
+	      	<button type="button" class="btn btn-outline-danger action-buttons right-action-button"><i class="fa fa-trash-o"></i></button>
+	      </td>
 	    </tr>
 	  </tbody>
 	</table>

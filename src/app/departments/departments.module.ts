@@ -21,7 +21,7 @@ import {DepartmentListComponent} from './department-list.component';
 		FormsModule,
 		ReactiveFormsModule
 		],
-	declarations: [DepartmentsComponent, DepartmentAddComponent, DepartmentListComponent]
+	declarations: [DepartmentsComponent, DepartmentAddComponent, DepartmentListComponent],
 })
 
 export class DepartmentsModule{}

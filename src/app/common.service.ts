@@ -29,6 +29,10 @@ export class CommonService{
 		let url = `${this.serverUrl}/new_dept`;
 		return this.http.post(url, postObj, httpHeaders);
 	}
+	updateDepartment(postObj): Observable<any>{
+		let url = `${this.serverUrl}/update_dept`;
+		return this.http.post(url, postObj, httpHeaders);
+	}
 	getAllDepartments(): Observable<Departments[]>{
 		let url = `${this.serverUrl}/list_dept`;
 		return this.http.get<Departments[]>(url, httpHeaders);

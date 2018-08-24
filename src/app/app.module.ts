@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,22 +11,26 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
+import { DepartmentEditComponent } from './departments/department-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent, 
-    LoginComponent
+    LoginComponent,
+    DepartmentEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    NgbModule,
+    NgbModule.forRoot(),
     AppRoutingModule,
     Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DepartmentEditComponent]
 })
 export class AppModule { }

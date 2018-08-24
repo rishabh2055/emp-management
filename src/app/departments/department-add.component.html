@@ -9,14 +9,14 @@
 	<div class="form-group row">
 	    <label for="departmentID" class="col-sm-2 col-form-label">Department ID</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" formControlName="departmentID" placeholder="Department ID" [(ngModel)] ="departmentObj.departmentID">
+	      <input type="text" class="form-control" formControlName="departmentID" placeholder="Department ID">
 	    </div>
 	</div>
 	<div class="form-group row">
 	    <label for="departmentName" class="col-sm-2 col-form-label">Name</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" formControlName="departmentName" placeholder="Department name" [ngClass] ="{'is-invalid':f.departmentName.errors && !f.departmentName.pristine}" [(ngModel)] ="departmentObj.departmentName">
-	      <div class="invalid-feedback" *ngIf="f.departmentName.errors && !f.departmentName.pristine">
+	      <input type="text" class="form-control" formControlName="departmentName" placeholder="Department name" [ngClass] ="{'is-invalid':f.departmentName.errors && !f.departmentName.pristine}">
+	      <div class="invalid-feedback" *ngIf="f.departmentName.errors && (f.departmentName.dirty || f.departmentName.touched)">
 	      	<div [hidden]="!f.departmentName.errors.required">Department name is required</div>
 	      	<div [hidden]="!f.departmentName.errors.minlength">Name must be at least 4 characters long</div>
 	      	<div [hidden]="!f.departmentName.errors.maxlength">Name must be of maximum 20 characters long</div>
@@ -26,8 +26,8 @@
 	<div class="form-group row">
 	    <label for="departmentDesc" class="col-sm-2 col-form-label">Description</label>
 	    <div class="col-sm-10">
-	      <textarea rows="5" class="form-control" formControlName="departmentDesc" placeholder="Department Description" [ngClass] ="{'is-invalid': f.departmentDesc.errors && !f.departmentDesc.pristine}" [(ngModel)] ="departmentObj.departmentDesc"></textarea>
-	      <div class="invalid-feedback" *ngIf="f.departmentDesc.errors && !f.departmentDesc.pristine">
+	      <textarea rows="5" class="form-control" formControlName="departmentDesc" placeholder="Department Description" [ngClass] ="{'is-invalid': f.departmentDesc.errors && !f.departmentDesc.pristine}"></textarea>
+	      <div class="invalid-feedback" *ngIf="f.departmentDesc.errors && (f.departmentDesc.dirty || f.departmentDesc.touched)">
 	      	<div [hidden]="!f.departmentDesc.errors.minlength">Description must be at least 4 characters long</div>
 	      	<div [hidden]="!f.departmentDesc.errors.maxlength">Description must be of maximum 100 characters long</div>
 	      </div>

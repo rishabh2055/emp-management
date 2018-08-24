@@ -21,3 +21,9 @@
 .employee-forms /deep/ .ngx-pagination{
     float: right !important;
 }
+.action-buttons{
+    padding:4px 8px 4px 8px;
+}
+.right-action-button{
+    margin-left:10px;
+}
