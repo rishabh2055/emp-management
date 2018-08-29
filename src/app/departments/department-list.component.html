@@ -1,4 +1,10 @@
 <h3 class="top-heading">Departments list</h3>
+<div [hidden]="successMsg === ''" class="alert alert-success" role="alert">
+  {{successMsg}}
+</div>
+<div [hidden]="errMsg === ''" class="alert alert-danger" role="alert">
+    {{errMsg}}
+  </div>
 <div class="row">
 	<div class="col-auto mr-auto"></div>
 	<div class="col-auto">
@@ -32,7 +38,7 @@
 	      <td>{{dept.createdOn | date: 'medium'}}</td>
 	      <td>
 	      	<button type="button" class="btn btn-outline-primary action-buttons" (click)="openModal(dept)"><i class="fa fa-edit"></i></button>
-	      	<button type="button" class="btn btn-outline-danger action-buttons right-action-button"><i class="fa fa-trash-o"></i></button>
+	      	<button type="button" class="btn btn-outline-danger action-buttons right-action-button" (click)="openConfirmationModal(dept)"><i class="fa fa-trash-o"></i></button>
 	      </td>
 	    </tr>
 	  </tbody>

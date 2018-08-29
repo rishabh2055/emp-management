@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -14,10 +14,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 export class DepartmentEditComponent implements OnInit{
 	@Input() departmentObj: any;
-	@Output() savedDepartment: EventEmitter<any> = new EventEmitter(); 
 	departmentFormGroup: FormGroup;
 	submitted: boolean = false;
-	successMsg: String = '';
 	errMsg: String = '';
 	constructor(
 		private activeModal: NgbActiveModal,
@@ -47,13 +45,11 @@ export class DepartmentEditComponent implements OnInit{
     	this.commonService.updateDepartment(postObj).subscribe(
 			data => {
 				this.errMsg = '';
-				this.successMsg = data.message;
 				this.activeModal.dismiss();
-				this.savedDepartment.emit('updateDepartmentCallBack');
 				this.spinnerService.hide();
+				this.commonService.callSecondComponentMethod(data.message);
 			},
 			error => {
-				this.successMsg = '';
 				this.errMsg = error.error.message.message;
 				this.spinnerService.hide();
 			}

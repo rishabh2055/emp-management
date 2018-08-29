@@ -12,13 +12,15 @@ import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
 import { DepartmentEditComponent } from './departments/department-edit.component';
+import { ConfirmationModalComponent } from './confirmation-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent, 
     LoginComponent,
-    DepartmentEditComponent
+    DepartmentEditComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,6 @@ import { DepartmentEditComponent } from './departments/department-edit.component
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DepartmentEditComponent]
+  entryComponents: [DepartmentEditComponent, ConfirmationModalComponent]
 })
 export class AppModule { }

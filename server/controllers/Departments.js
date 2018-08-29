@@ -18,7 +18,6 @@ class Departments{
 	}
 	updateDepartment(req, res){
 		let department = {
-			departmentId: req.body.departmentId,
 			departmentName: req.body.departmentName,
 			departmentDesc: req.body.departmentDesc,
 			updatedOn: new Date()
@@ -26,8 +25,20 @@ class Departments{
 		DeptModel.update({_id: req.body._id}, department, (err, numAffected) => {
 			if(err){
 				res.status(400).json({message: err});
-			}else{console.log('numAffected', numAffected)
+			}else{
 				res.status(200).json({message: "Department details updated successfully"});
+			}
+		})
+	}
+	deleteDepartment(req, res){
+		let department = {
+			_id: req.body._id
+		};
+		DeptModel.remove(department, (err, numAffected) => {
+			if(err){
+				res.status(400).json({message: err});
+			}else{
+				res.status(200).json({message: "Department details deleted successfully"});
 			}
 		})
 	}
