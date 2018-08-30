@@ -16,7 +16,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 
 export class DepartmentListComponent implements OnInit{
-	private departments: Departments[] = [];
+	private departments: Array<Departments[]> = [];
 	private page: number = 1;
 	private totalPages: number = 14;
 	private key: string = 'departmentID';
@@ -45,7 +45,7 @@ export class DepartmentListComponent implements OnInit{
 		this.spinnerService.show();
     	this.commonService.getAllDepartments()
     		.subscribe(
-    				data => {
+    				(data: any) => {
     					this.departments = data.departments;
     					this.spinnerService.hide();
     				},
