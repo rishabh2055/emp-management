@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h4 class="modal-title">Edit Grade</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div [hidden]="errMsg === ''" class="alert alert-danger" role="alert">
+    {{errMsg}}
+  </div>
+  <form class="employee-forms" [formGroup]="gradesFormGroup" (ngSubmit)="submitGrade()">
+    <div class="form-group row">
+        <label for="departmentID" class="col-sm-2 col-form-label">Grade ID</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="gradeId" name="gradeID" id="gradeID" placeholder="Grade ID">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="gradeName" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="gradeName" name="gradeName" id="gradeName" placeholder="Grade name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="startSalary" class="col-sm-2 col-form-label">Salary range</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" formControlName="startSalary" name="startSalary" id="startSalary" placeholder="Start salary" [ngClass] ="{'is-invalid':f.startSalary.errors && !f.startSalary.pristine}">
+          <div class="invalid-feedback" *ngIf="f.startSalary.errors && (f.startSalary.dirty || f.startSalary.touched)">
+            <div [hidden]="!f.startSalary.errors.required">Start salary is required</div>
+            <div [hidden]="!f.startSalary.errors.minlength">Start salary must be at least 2 digits long</div>
+            <div [hidden]="!f.startSalary.errors.maxlength">Start salary must be of maximum 10 digits long</div>
+            <div [hidden]="!f.startSalary.errors.pattern">Start salary must contain digits only</div>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" formControlName="endSalary" name="endSalary" id="endSalary" placeholder="End salary" [ngClass] ="{'is-invalid':f.endSalary.errors && !f.endSalary.pristine}">
+          <div class="invalid-feedback" *ngIf="f.endSalary.errors && (f.endSalary.dirty || f.endSalary.touched)">
+            <div [hidden]="!f.endSalary.errors.required">End salary is required</div>
+            <div [hidden]="!f.endSalary.errors.minlength">End salary must be at least 2 digits long</div>
+            <div [hidden]="!f.endSalary.errors.maxlength">End salary must be of maximum 10 digits long</div>
+            <div [hidden]="!f.endSalary.errors.pattern">End salary must contain digits only</div>
+          </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="gradeDesc" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <textarea rows="5" class="form-control" formControlName="gradeDesc" name="gradeDesc" id="gradeDesc" placeholder="Grade description" [ngClass] ="{'is-invalid':f.gradeDesc.errors && !f.gradeDesc.pristine}"></textarea>
+          <div class="invalid-feedback" *ngIf="f.gradeDesc.errors && (f.gradeDesc.dirty || f.gradeDesc.touched)">
+            <div [hidden]="!f.gradeDesc.errors.minlength">Grade description must be at least 4 characters long</div>
+            <div [hidden]="!f.gradeDesc.errors.maxlength">Grade description must be of maximum 100 characters long</div>
+          </div>
+        </div>
+    </div>
+    <div class="form-group row pad-top-10">
+      <div class="col-auto mr-auto"></div>
+        <div class="col-auto">
+            <button type="reset" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Close</button>
+            <button type="submit" class="btn btn-outline-success mar-lef-10" [disabled]="!gradesFormGroup.valid">Submit</button>
+        </div>
+      </div>
+  </form>
+</div>

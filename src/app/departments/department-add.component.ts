@@ -27,7 +27,7 @@ export class DepartmentAddComponent implements OnInit{
 		this.getDepartmentID();
 		this.departmentFormGroup = this.formBuilder.group({
 			departmentID: [{value: '', disabled: true}, Validators.required],
-			departmentName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+			departmentName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern(/^[a-zA-Z]*$/)]],
 			departmentDesc: ['', [Validators.minLength(4), Validators.maxLength(100)]],
 		});
 	}

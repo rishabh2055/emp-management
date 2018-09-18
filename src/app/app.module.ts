@@ -12,6 +12,7 @@ import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
 import { DepartmentEditComponent } from './departments/department-edit.component';
+import { GradeEditComponent } from './grades/grade-edit.component';
 import { ConfirmationModalComponent } from './confirmation-modal.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ConfirmationModalComponent } from './confirmation-modal.component';
     DashboardComponent, 
     LoginComponent,
     DepartmentEditComponent,
+    GradeEditComponent,
     ConfirmationModalComponent
   ],
   imports: [
@@ -33,6 +35,6 @@ import { ConfirmationModalComponent } from './confirmation-modal.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DepartmentEditComponent, ConfirmationModalComponent]
+  entryComponents: [DepartmentEditComponent, ConfirmationModalComponent, GradeEditComponent]
 })
 export class AppModule { }

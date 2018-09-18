@@ -26,9 +26,9 @@ describe('AppComponent', () => {
   let commonService: CommonService;
   let setCurrentRoute;
   let routes: Routes = [
-    {path: 'departments', component: DepartmentsComponent}
-    {path: 'departments/add', component: DepartmentsComponent}
-    {path: 'grades', component: DepartmentsComponent}
+    {path: 'departments', component: DepartmentsComponent},
+    {path: 'departments/add', component: DepartmentsComponent},
+    {path: 'grades', component: DepartmentsComponent},
     {path: 'grades/add', component: DepartmentsComponent}
   ]
   beforeEach(async(() => {

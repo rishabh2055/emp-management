@@ -20,6 +20,7 @@
 	      	<div [hidden]="!f.departmentName.errors.required">Department name is required</div>
 	      	<div [hidden]="!f.departmentName.errors.minlength">Name must be at least 4 characters long</div>
 	      	<div [hidden]="!f.departmentName.errors.maxlength">Name must be of maximum 20 characters long</div>
+	      	<div [hidden]="!f.departmentName.errors.pattern">Name must contain characters only</div>
 	      </div>
 	    </div>
 	</div>
@@ -36,7 +37,7 @@
 	<div class="form-group row pad-top-10">
 		<div class="col-auto mr-auto"></div>
     	<div class="col-auto">
-      		<button type="reset" class="btn btn-outline-secondary">Cancel</button>
+      		<button type="reset" class="btn btn-outline-secondary" (click)="getDepartmentID()">Cancel</button>
       		<button type="submit" class="btn btn-outline-success mar-lef-10" [disabled]="!departmentFormGroup.valid">Submit</button>
     	</div>
   	</div>

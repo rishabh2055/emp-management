@@ -10,9 +10,15 @@ import {CommonService} from './common.service';
 
 export class ConfirmationModalComponent{
 	@Input() departmentObj: any;
+	@Input() gradeObj: any;
 	constructor(private activeModal: NgbActiveModal, private commonService: CommonService){}
 	yesDelete(){
 		this.activeModal.dismiss();
-		this.commonService.callSecondComponentMethod(this.departmentObj);
+		if(this.departmentObj){
+			this.commonService.callSecondComponentMethod(this.departmentObj);
+		}
+		if(this.gradeObj){
+			this.commonService.callSecondComponentMethod(this.gradeObj);
+		}
 	}
 }

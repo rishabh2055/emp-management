@@ -1,1 +1,55 @@
-<h1>List</h1>
+<h3 class="top-heading">Grades list</h3>
+<div [hidden]="successMsg === ''" class="alert alert-success" role="alert">
+  {{successMsg}}
+</div>
+<div [hidden]="errMsg === ''" class="alert alert-danger" role="alert">
+    {{errMsg}}
+  </div>
+<div class="row">
+	<div class="col-auto mr-auto"></div>
+	<div class="col-auto">
+		<input type="text" class="form-control" [(ngModel)]="filter" name="filterGrade" id="filterGrade" placeholder="Search here...">
+	</div>
+</div>
+<div class="table-responsive employee-forms">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col" (click)="sort('gradeId')">Grade ID
+            <i class="fa" *ngIf="key =='gradeId'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+	      <th scope="col" (click)="sort('gradeName')">Name
+            <i class="fa" *ngIf="key =='gradeName'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+          <th scope="col" (click)="sort('gradeStartSalary')">Start salary
+            <i class="fa" *ngIf="key =='gradeStartSalary'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+          <th scope="col" (click)="sort('gradeEndSalary')">End salary
+            <i class="fa" *ngIf="key =='gradeEndSalary'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+	      <th scope="col" (click)="sort('gradeDescription')">Description
+            <i class="fa" *ngIf="key =='gradeDescription'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+          <th scope="col" (click)="sort('createdOn')">Created At
+            <i class="fa" *ngIf="key =='createdOn'" [ngClass]="{'fa-sort-asc':reverse,'fa-sort-desc':!reverse}"></i>
+          </th>
+          <th scope="col">Actions</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let grade of grades | orderBy: key: reverse | filter: filter | paginate: {itemsPerPage: 5, currentPage: page}">
+	      <td>{{grade.gradeId}}</td>
+	      <td>{{grade.gradeName}}</td>
+	      <td>{{grade.gradeStartSalary}}</td>
+	      <td>{{grade.gradeEndSalary}}</td>
+	      <td>{{grade.gradeDescription}}</td>
+	      <td>{{grade.createdOn | date: 'medium'}}</td>
+	      <td>
+	      	<button type="button" class="btn btn-outline-primary action-buttons" (click)="openModal(grade)"><i class="fa fa-edit"></i></button>
+	      	<button type="button" class="btn btn-outline-danger action-buttons right-action-button" (click)="openConfirmationModal(grade)"><i class="fa fa-trash-o"></i></button>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+	<pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

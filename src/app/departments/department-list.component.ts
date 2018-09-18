@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {DepartmentsComponent} from './departments.component';
 import {Departments} from './departments';
 import {DepartmentEditComponent} from './department-edit.component';
 import {ConfirmationModalComponent} from '../confirmation-modal.component';
