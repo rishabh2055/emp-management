@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"emp-management.grades"},{"v":2,"unique":true,"key":{"gradeId":1},"name":"gradeId_1","ns":"emp-management.grades","background":true},{"v":2,"unique":true,"key":{"gradeName":1},"name":"gradeName_1","ns":"emp-management.grades","background":true}],"uuid":"dc578a8a04ea4c588042302c0db7faee"}
