@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
     {id: 3, menu: 'Grades', isActive: false, isCollapsed: false, icon: 'graduation-cap', children: [
       {id: 1, submenu: 'Add new grade', route: '/grades/add', url: 'grades/add'},
       {id: 1, submenu: 'Grades', route: '/grades', url: 'grades'}
+    ]},
+    {id: 4, menu: 'Employees', isActive: false, isCollapsed: false, icon: 'users', children: [
+      {id: 1, submenu: 'Add new employee', route: '/employees/add', url: 'employees/add'},
+      {id: 1, submenu: 'Employees', route: '/employees', url: 'employees'}
     ]}
   ]
   constructor(private router: Router, private commonService: CommonService){}
@@ -38,6 +42,14 @@ export class AppComponent implements OnInit {
           this.commonService.setCurrentRoute('Grades list');
         }else if(events.url === '/grades/add'){
           this.commonService.setCurrentRoute('Add new Grade');
+        }else if(events.url === '/employees'){
+          this.commonService.setCurrentRoute('Employees list');
+        }else if(events.url === '/employees/add'){
+          this.commonService.setCurrentRoute('Add new employee');
+        }else if(events.url === '/employees/edit'){
+          this.commonService.setCurrentRoute('Update employee');
+        }else if(events.url === '/employees/view'){
+          this.commonService.setCurrentRoute('View employee');
         }
         this.sideMenuLinks.forEach(menu => {
           if(menu.route === events.url){

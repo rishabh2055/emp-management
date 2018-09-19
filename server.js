@@ -17,7 +17,7 @@ const express = require('express'),
     );
     const departmentRoutes = require('./server/routes/departments');
     const gradeRoutes = require('./server/routes/grades');
-    //const employeeRoutes = require('./server/routes/employees');
+    const employeeRoutes = require('./server/routes/employees');
 
     app.use(bodyParser.json());
     app.use(cors());
@@ -25,7 +25,7 @@ const express = require('express'),
 
     app.use('/api/departments', departmentRoutes);
     app.use('/api/grades', gradeRoutes);
-    //app.use('/api/employees', employeeRoutes);
+    app.use('/api/employees', employeeRoutes);
 
     const server = app.listen(port, function(){
      console.log('Listening on port ' + port);

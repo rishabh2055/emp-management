@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-let Schema = mongoose.Schema();
+let Schema = mongoose.Schema;
 
 let EmpSchema = new Schema({
 	empId: {
@@ -24,11 +24,11 @@ let EmpSchema = new Schema({
 		trim: true
 	},
 	empExperience: {
-		type: number,
+		type: Number,
 		trim: true
 	},
 	FKDepartmentId: {
-		type: number,
+		type: Number,
 		required: true,
 		trim: true
 	},
@@ -43,7 +43,7 @@ let EmpSchema = new Schema({
 		trim: true
 	},
 	FKGradeId: {
-		type: number,
+		type: Number,
 		required: true,
 		trim: true
 	},
@@ -63,5 +63,18 @@ let EmpSchema = new Schema({
 	empAddress: {
 		type: String,
 		trim: true
+	},
+	empImage: {
+		type: String,
+		trim: true
+	},
+	createdOn: {
+		type: Date
+	},
+	updatedOn: {
+		type: Date
 	}
 });
+
+let Employees = mongoose.model('Employees', EmpSchema);
+module.exports = Employees;

@@ -1,0 +1,54 @@
+.main-section{
+    padding: 15px 10px;
+    background: #f8f9fa;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 15px;
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.top-heading{
+	padding: 10px 8px;
+}
+.employee-forms{
+	padding: 32px 10px 0px 6px;
+}
+.pad-top-10{
+	padding-top:10px;
+}
+.mar-lef-10{
+	margin-left:10px;
+}
+.employee-forms /deep/ .ngx-pagination{
+    float: right !important;
+}
+.action-buttons{
+    padding:4px 8px 4px 8px;
+}
+.right-action-button{
+    margin-left:10px;
+}
+
+.nav-tabs .nav-item{
+    margin: 0 2px 0 2px;
+}
+
+.nav-tabs .nav-item a{
+    position: relative;
+    padding: 10px 0;
+    color: #999999;
+    background-color: #dedede;
+    border-color: #dedede;
+}
+.nav-tabs .nav-link.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.nav-tabs .nav-item a.active, .nav-tabs .nav-item a:hover{
+    color: #fff !important;
+    background-color: #7386D5 !important;
+    border-color: #7386D5 !important;
+    border-bottom: none !important;
+    -webkit-box-shadow: -2px 4px 10px 1px rgba(115,134,213,1);
+    -moz-box-shadow: -2px 4px 10px 1px rgba(115,134,213,1);
+    box-shadow: -2px 4px 10px 1px rgba(115,134,213,1);
+}
