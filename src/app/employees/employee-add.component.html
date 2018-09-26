@@ -5,7 +5,7 @@
 <div [hidden]="errMsg === ''" class="alert alert-danger" role="alert">
   {{errMsg}}
 </div>
-<form class="employee-forms">
+<form class="employee-forms" [formGroup]="employeeFormGroup">
 	<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 	  <li class="nav-item">
 	    <a class="nav-link" [ngClass]="{'active': activeTabs === 'personal'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="personal" aria-selected="true" (click)="changeCurrentTab('personal')">Personal</a>
@@ -24,7 +24,115 @@
 	  </li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
-	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'personal'}" id="personal" role="tabpanel" aria-labelledby="home-tab">Personal</div>
+	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'personal'}" id="personal" role="tabpanel" aria-labelledby="home-tab">
+	  	<div class="panel-section">
+	  		<h4>Employee personal information</h4>
+	  		<div class="row">
+	  			<div class="col">
+	  				<div class="form-group row">
+					    <label for="empId" class="col-sm-4 col-form-label">Employee ID</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" formControlName="empId" placeholder="Employee ID">
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empDesignation" class="col-sm-4 col-form-label">Designation</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" formControlName="empDesignation" placeholder="Designation">
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empEmail" class="col-sm-4 col-form-label">Email</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" formControlName="empEmail" placeholder="Email">
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empDepartment" class="col-sm-4 col-form-label">Department</label>
+					    <div class="col-sm-8">
+					      <select class="form-control" formControlName="empDepartment">
+					      	<option value="">Choose department</option>
+					      </select>
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empSalaryRange" class="col-sm-4 col-form-label">Salary range (In Rs.)</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" placeholder="Salary range" disabled>
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empGender" class="col-sm-4 col-form-label">Gender</label>
+					    <div class="col-sm-8">
+					      <div class="custom-control custom-radio custom-control-inline">
+						    <input type="radio" name="empGender" class="custom-control-input" id="male" formControlName="empGender">
+						    <label class="custom-control-label" for="male">Male</label>
+						  </div>
+						  <div class="custom-control custom-radio custom-control-inline">
+						    <input type="radio" name="empGender" class="custom-control-input" id="female" formControlName="empGender">
+						    <label class="custom-control-label" for="female">Female</label>
+						  </div>
+					    </div>
+					</div>
+	  			</div>
+	  			<div class="col">
+	  				<div class="form-group row">
+					    <label for="empName" class="col-sm-4 col-form-label">Employee name</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" placeholder="Employee name" formControlName="empName">
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empJoiningDate" class="col-sm-4 col-form-label">Joining date</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" placeholder="Joining date" readonly="" formControlName="empJoiningDate">
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empPhoneNo" class="col-sm-4 col-form-label">Contact no.</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" placeholder="Contact no." formControlName="empPhoneNo">
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empGrade" class="col-sm-4 col-form-label">Grade</label>
+					    <div class="col-sm-8">
+					      <select class="form-control" formControlName="empGrade">
+					      	<option value="">Choose grade</option>
+					      </select>
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empSalary" class="col-sm-4 col-form-label">Salary (In Rs.)</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" placeholder="Salary" formControlName="empSalary">
+					    </div>
+					</div>
+					<div class="form-group row">
+					    <label for="empBloodGroup" class="col-sm-4 col-form-label">Blood group</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" placeholder="Blood group" formControlName="empBloodGroup">
+					    </div>
+					</div>
+	  			</div>
+	  			<div class="col-sm-12">
+	  				<div class="form-group row">
+					    <label for="empAddress" class="col-sm-2 col-form-label">Address</label>
+					    <div class="col-sm-10">
+					      <textarea class="form-control" placeholder="Address" rows="5" formControlName="empAddress"></textarea>
+					    </div>
+					</div>
+					<div class="form-group row pad-top-10">
+						<div class="col-auto mr-auto"></div>
+				    	<div class="col-auto">
+				      		<button type="reset" class="btn btn-outline-secondary">Cancel</button>
+				      		<button type="submit" class="btn btn-outline-success mar-lef-10" [disabled]="!employeeFormGroup.valid">Save and continue</button>
+				    	</div>
+				  	</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  </div>
 	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'qualification'}" id="qualification" role="tabpanel" aria-labelledby="profile-tab">Qualification</div>
 	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'skills'}" id="skills" role="tabpanel" aria-labelledby="contact-tab">Skills</div>
 	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'projects'}" id="projects" role="tabpanel" aria-labelledby="contact-tab">Projects</div>

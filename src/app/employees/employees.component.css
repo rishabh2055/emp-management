@@ -52,3 +52,12 @@
     -moz-box-shadow: -2px 4px 10px 1px rgba(115,134,213,1);
     box-shadow: -2px 4px 10px 1px rgba(115,134,213,1);
 }
+.panel-section{
+    padding:20px 0;
+}
+.panel-section h4{
+    padding:10px 0;
+}
+.form-control[readonly] {
+    background-color: #fff !important;
+}

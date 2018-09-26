@@ -22,7 +22,21 @@ export class EmployeeAddComponent implements OnInit{
 		
 	}
 	ngOnInit(){
+		this.employeeFormGroup = this.formBuilder.group({
+			empId: [{value: '', disabled: true}],
+			empName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9 ]*$/)]],
+			empDesignation: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9 ]*$/)]],
+			empEmail: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)]],
+			empDepartment: ['', [Validators.required]],
+			empGender: ['', [Validators.required]],
+			empJoiningDate: ['', [Validators.required]],
+			empPhoneNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15), Validators.pattern(/^[0-9+ ]*$/)]],
+			empSalary: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern(/^[0-9.,]*$/)]],
+			empBloodGroup: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(5), Validators.pattern(/^[A-Z+ ]*$/)]],
+			empGrade: ['', [Validators.required]],
+			empAddress: ['', [Validators.minLength(3), Validators.maxLength(500)]],
 
+		});
 	}
 
 	changeCurrentTab(tab){
