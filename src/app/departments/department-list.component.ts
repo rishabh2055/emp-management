@@ -47,9 +47,11 @@ export class DepartmentListComponent implements OnInit{
     				(data: any) => {
     					this.departments = data.departments;
     					this.spinnerService.hide();
+    					this.errMsg = '';
     				},
-    				error => {
+    				error => {debugger
     					this.spinnerService.hide();
+    					this.errMsg = error.message;
     				}
     			)
 	}

@@ -11,16 +11,16 @@
 	    <a class="nav-link" [ngClass]="{'active': activeTabs === 'personal'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="personal" aria-selected="true" (click)="changeCurrentTab('personal')">Personal</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link disabled" [ngClass]="{'active': activeTabs === 'qualification'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="qualification" aria-selected="false" (click)="changeCurrentTab('qualification')">Qualifications</a>
+	    <a class="nav-link" [ngClass]="{'active': activeTabs === 'qualification'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="qualification" aria-selected="false" (click)="changeCurrentTab('qualification')">Qualifications</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link disabled" [ngClass]="{'active': activeTabs === 'skills'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="skills" aria-selected="false" (click)="changeCurrentTab('skills')">Skills</a>
+	    <a class="nav-link" [ngClass]="{'active': activeTabs === 'skills'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="skills" aria-selected="false" (click)="changeCurrentTab('skills')">Skills</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link disabled" [ngClass]="{'active': activeTabs === 'projects'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="projects" aria-selected="false" (click)="changeCurrentTab('projects')">Projects</a>
+	    <a class="nav-link" [ngClass]="{'active': activeTabs === 'projects'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="projects" aria-selected="false" (click)="changeCurrentTab('projects')">Projects</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link disabled" [ngClass]="{'active': activeTabs === 'image'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="image" aria-selected="false" (click)="changeCurrentTab('image')">Image</a>
+	    <a class="nav-link" [ngClass]="{'active': activeTabs === 'image'}" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="image" aria-selected="false" (click)="changeCurrentTab('image')">Image</a>
 	  </li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
@@ -133,9 +133,202 @@
 	  		</div>
 	  	</div>
 	  </div>
-	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'qualification'}" id="qualification" role="tabpanel" aria-labelledby="profile-tab">Qualification</div>
-	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'skills'}" id="skills" role="tabpanel" aria-labelledby="contact-tab">Skills</div>
-	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'projects'}" id="projects" role="tabpanel" aria-labelledby="contact-tab">Projects</div>
-	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'image'}" id="image" role="tabpanel" aria-labelledby="contact-tab">Image</div>
+	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'qualification'}" id="qualification" role="tabpanel" aria-labelledby="profile-tab">
+	  	<div class="panel-section">
+	  		<h4>Employee education details</h4>
+		  	<table class="table table-striped tables" formArrayName="empQualifications">
+			  <thead>
+			    <tr>
+			      <th scope="col">Education Level</th>
+			      <th scope="col">College & University</th>
+			      <th scope="col">Year Of Passing</th>
+			      <th scope="col">Percentage</th>
+			      <th scope="col">Action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let edu of empQualControls.controls; let i = index;" [formGroupName]="i">
+			      <td>
+			      	<input type="text" class="form-control" formControlName="qualification" placeholder="Education level" [ngClass] ="{'is-invalid':empQualControls.controls[i].controls.qualification.errors && !empQualControls.controls[i].controls.qualification.pristine}">
+				      <div class="invalid-feedback" *ngIf="empQualControls.controls[i].controls.qualification.errors && (empQualControls.controls[i].controls.qualification.dirty || empQualControls.controls[i].controls.qualification.touched)">
+				      	<div [hidden]="!empQualControls.controls[i].controls.qualification.errors.required">Education level is required</div>
+				      	<div [hidden]="!empQualControls.controls[i].controls.qualification.errors.minlength">Must be at least 2 characters long</div>
+				      	<div [hidden]="!empQualControls.controls[i].controls.qualification.errors.maxlength">Must be of maximum 50 characters long</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<input type="text" class="form-control" formControlName="university" placeholder="College & University" [ngClass] ="{'is-invalid':empQualControls.controls[i].controls.university.errors && !empQualControls.controls[i].controls.university.pristine}">
+				      <div class="invalid-feedback" *ngIf="empQualControls.controls[i].controls.university.errors && (empQualControls.controls[i].controls.university.dirty || empQualControls.controls[i].controls.university.touched)">
+				      	<div [hidden]="!empQualControls.controls[i].controls.university.errors.required">College & University is required</div>
+				      	<div [hidden]="!empQualControls.controls[i].controls.university.errors.minlength">Must be at least 2 characters long</div>
+				      	<div [hidden]="!empQualControls.controls[i].controls.university.errors.maxlength">Must be of maximum 50 characters long</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<select class="form-control" formControlName="yearOfPassing" [ngClass] ="{'is-invalid':empQualControls.controls[i].controls.yearOfPassing.errors && !empQualControls.controls[i].controls.yearOfPassing.pristine}">
+				      	<option value="">Choose year</option>
+				      	<option value="dasf">dasfds</option>
+				      </select>
+				      <div class="invalid-feedback" *ngIf="empQualControls.controls[i].controls.yearOfPassing.errors && (empQualControls.controls[i].controls.yearOfPassing.dirty || empQualControls.controls[i].controls.yearOfPassing.touched)">
+				      	<div [hidden]="!empQualControls.controls[i].controls.yearOfPassing.errors.required">Education level is required</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<input type="text" class="form-control" formControlName="percentage" placeholder="Percentage" [ngClass] ="{'is-invalid':empQualControls.controls[i].controls.percentage.errors && !empQualControls.controls[i].controls.percentage.pristine}">
+				      <div class="invalid-feedback" *ngIf="empQualControls.controls[i].controls.percentage.errors && (empQualControls.controls[i].controls.percentage.dirty || empQualControls.controls[i].controls.percentage.touched)">
+				      	<div [hidden]="!empQualControls.controls[i].controls.percentage.errors.required">Percentage is required</div>
+				      	<div [hidden]="!empQualControls.controls[i].controls.percentage.errors.minlength">Must be at least 1 characters long</div>
+				      	<div [hidden]="!empQualControls.controls[i].controls.percentage.errors.maxlength">Must be of maximum 3 characters long</div>
+				      	<div [hidden]="!empQualControls.controls[i].controls.percentage.errors.pattern">Should be numbers only</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<button type="button" class="btn btn-outline-primary action-buttons" (click)="addMoreQualification()" [disabled]="!isQualificationFormValid()"><i class="fa fa-plus"></i></button>
+			      	<button [hidden]="i === 0" type="button" class="btn btn-outline-danger action-buttons right-action-button" (click)="removeQualificationIndex(i)"><i class="fa fa-minus"></i></button>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="form-group row pad-top-10">
+				<div class="col-auto mr-auto"></div>
+		    	<div class="col-auto">
+		      		<button type="reset" class="btn btn-outline-secondary">Cancel</button>
+		      		<button type="submit" class="btn btn-outline-success mar-lef-10" [disabled]="!isQualificationFormValid()">Save and continue</button>
+		    	</div>
+		  	</div>
+	  	</div>
+	  </div>
+	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'skills'}" id="skills" role="tabpanel" aria-labelledby="contact-tab">
+	  	<div class="panel-section">
+	  		<h4>Employee skills details</h4>
+		  	<table class="table table-striped tables" formArrayName="empSkills">
+			  <thead>
+			    <tr>
+			      <th scope="col">Skill</th>
+			      <th scope="col">Total Experience (in months)</th>
+			      <th scope="col">Competency Level</th>
+			      <th scope="col">Action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let edu of empSkillsControls.controls; let i = index;" [formGroupName]="i">
+			      <td>
+			      	<input type="text" class="form-control" placeholder="Skill" formControlName="skill" [ngClass] ="{'is-invalid':empSkillsControls.controls[i].controls.skill.errors && !empSkillsControls.controls[i].controls.skill.pristine}">
+				      <div class="invalid-feedback" *ngIf="empSkillsControls.controls[i].controls.skill.errors && (empSkillsControls.controls[i].controls.skill.dirty || empSkillsControls.controls[i].controls.skill.touched)">
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.skill.errors.required">Skill is required</div>
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.skill.errors.minlength">Must be at least 2 characters long</div>
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.skill.errors.maxlength">Must be of maximum 50 characters long</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<input type="text" class="form-control" placeholder="Year of experience" formControlName="totalExperience" [ngClass] ="{'is-invalid':empSkillsControls.controls[i].controls.totalExperience.errors && !empSkillsControls.controls[i].controls.totalExperience.pristine}">
+				      <div class="invalid-feedback" *ngIf="empSkillsControls.controls[i].controls.totalExperience.errors && (empSkillsControls.controls[i].controls.totalExperience.dirty || empSkillsControls.controls[i].controls.totalExperience.touched)">
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.totalExperience.errors.required">Total experience is required</div>
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.totalExperience.errors.minlength">Must be at least 1 characters long</div>
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.totalExperience.errors.maxlength">Must be of maximum 3 characters long</div>
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.totalExperience.errors.pattern">Should be numbers only</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<select class="form-control" formControlName="competencyLevel" [ngClass] ="{'is-invalid':empSkillsControls.controls[i].controls.competencyLevel.errors && !empSkillsControls.controls[i].controls.competencyLevel.pristine}">
+				      	<option value="">Choose level</option>
+				      	<option value="Begineer">Begineer</option>
+				      	<option value="Intermediate">Intermediate</option>
+				      	<option value="Expert">Expert</option>
+				      </select>
+				      <div class="invalid-feedback" *ngIf="empSkillsControls.controls[i].controls.competencyLevel.errors && (empSkillsControls.controls[i].controls.competencyLevel.dirty || empSkillsControls.controls[i].controls.competencyLevel.touched)">
+				      	<div [hidden]="!empSkillsControls.controls[i].controls.competencyLevel.errors.required">Competency level is required</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<button type="button" class="btn btn-outline-primary action-buttons" (click)="addMoreSkill()" [disabled]="!isSkillFormValid()"><i class="fa fa-plus"></i></button>
+			      	<button [hidden]="i === 0" type="button" class="btn btn-outline-danger action-buttons right-action-button" (click)="removeSkillIndex(i)"><i class="fa fa-minus"></i></button>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="form-group row pad-top-10">
+				<div class="col-auto mr-auto"></div>
+		    	<div class="col-auto">
+		      		<button type="reset" class="btn btn-outline-secondary">Cancel</button>
+		      		<button type="submit" class="btn btn-outline-success mar-lef-10" [disabled]="!isSkillFormValid()">Save and continue</button>
+		    	</div>
+		  	</div>
+	  	</div>
+	  </div>
+	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'projects'}" id="projects" role="tabpanel" aria-labelledby="contact-tab">
+	  	<div class="panel-section">
+	  		<h4>Employee project details</h4>
+		  	<table class="table table-striped tables" formArrayName="empProjects">
+			  <thead>
+			    <tr>
+			      <th scope="col">Project</th>
+			      <th scope="col">Joined At</th>
+			      <th scope="col">Left At</th>
+			      <th scope="col">Action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let edu of empProjectsControls.controls; let i = index;" [formGroupName]="i">
+			      <td>
+			      	<input type="text" class="form-control" placeholder="Project" formControlName="project" [ngClass] ="{'is-invalid':empProjectsControls.controls[i].controls.project.errors && !empProjectsControls.controls[i].controls.project.pristine}">
+				      <div class="invalid-feedback" *ngIf="empProjectsControls.controls[i].controls.project.errors && (empProjectsControls.controls[i].controls.project.dirty || empProjectsControls.controls[i].controls.project.touched)">
+				      	<div [hidden]="!empProjectsControls.controls[i].controls.project.errors.required">Project is required</div>
+				      	<div [hidden]="!empProjectsControls.controls[i].controls.project.errors.minlength">Must be at least 2 characters long</div>
+				      	<div [hidden]="!validRange">Must be of maximum 50 characters long</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<input type="text" class="form-control" placeholder="Joined At" formControlName="joinedAt" [ngClass] ="{'is-invalid':empProjectsControls.controls[i].controls.joinedAt.errors && !empProjectsControls.controls[i].controls.joinedAt.pristine}" ngbDatepicker (click)="datePickerJoined.toggle()" #datePickerJoined="ngbDatepicker">
+				      <div class="invalid-feedback" *ngIf="empProjectsControls.controls[i].controls.joinedAt.errors && (empProjectsControls.controls[i].controls.joinedAt.dirty || empProjectsControls.controls[i].controls.joinedAt.touched)">
+				      	<div [hidden]="!empProjectsControls.controls[i].controls.joinedAt.errors.required">Joined at is required</div>
+				      </div>
+				      <div class="invalid-feedback">
+				      	<div *ngIf="validRange">Left at date should be greater than joined at date</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<input type="text" class="form-control" placeholder="Left At" formControlName="leftAt" [ngClass] ="{'is-invalid':empProjectsControls.controls[i].controls.leftAt.errors && !empProjectsControls.controls[i].controls.leftAt.pristine}" ngbDatepicker (click)="datePickerLeft.toggle()" #datePickerLeft="ngbDatepicker">
+				      <div class="invalid-feedback" *ngIf="empProjectsControls.controls[i].controls.leftAt.errors && (empProjectsControls.controls[i].controls.leftAt.dirty || empProjectsControls.controls[i].controls.leftAt.touched)">
+				      	<div [hidden]="!empProjectsControls.controls[i].controls.leftAt.errors.required">Left at is required</div>
+				      </div>
+				      <div class="invalid-feedback">
+				      	<div *ngIf="validRange">Left at date should be greater than joined at date</div>
+				      </div>
+				  </td>
+			      <td>
+			      	<button type="button" class="btn btn-outline-primary action-buttons" (click)="addMoreProject(empProjectsControls.controls[i].controls)" [disabled]="!isProjectFormValid()"><i class="fa fa-plus"></i></button>
+			      	<button [hidden]="i === 0" type="button" class="btn btn-outline-danger action-buttons right-action-button" (click)="removeProjectIndex(i)"><i class="fa fa-minus"></i></button>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="form-group row pad-top-10">
+				<div class="col-auto mr-auto"></div>
+		    	<div class="col-auto">
+		      		<button type="reset" class="btn btn-outline-secondary">Cancel</button>
+		      		<button type="submit" class="btn btn-outline-success mar-lef-10" [disabled]="!isProjectFormValid()">Save and continue</button>
+		    	</div>
+		  	</div>
+	  	</div>
+	  </div>
+	  <div class="tab-pane fade" [ngClass]="{'show active': activeTabs === 'image'}" id="image" role="tabpanel" aria-labelledby="contact-tab">
+	  	<div class="panel-section">
+	  		<h4>Upload employee image</h4>
+	  		<div class="input-group">
+			  <div class="custom-file">
+			    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+			    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+			  </div>
+			</div>
+			<div class="form-group row pad-top-10">
+				<div class="col-auto mr-auto"></div>
+		    	<div class="col-auto">
+		      		<button type="reset" class="btn btn-outline-secondary">Cancel</button>
+		      		<button type="submit" class="btn btn-outline-success mar-lef-10" [disabled]="!employeeFormGroup.valid">Save and continue</button>
+		    	</div>
+		  	</div>
+	  	</div>
+	  </div>
 	</div>
 </form>

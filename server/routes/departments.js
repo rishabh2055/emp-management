@@ -7,6 +7,6 @@ router.get('/get_dept_id', controller.getDepartmentID);
 router.post('/new_dept', controller.addNewDepartment);
 router.post('/update_dept', controller.updateDepartment);
 router.post('/delete_dept', controller.deleteDepartment);
-router.get('/list_dept', controller.getAllDepartments);
+router.get('/lists_dept', controller.getAllDepartments);
 
 module.exports = router;

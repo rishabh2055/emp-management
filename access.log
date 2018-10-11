@@ -1,0 +1,2 @@
+::1 - - [28/Sep/2018:04:36:02 +0000] "OPTIONS /api/departments/list_dept HTTP/1.1" 204 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+::1 - - [28/Sep/2018:04:36:03 +0000] "GET /api/departments/list_dept HTTP/1.1" 200 1349 "http://localhost:4200/departments" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
