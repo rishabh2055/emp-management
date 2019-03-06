@@ -93,14 +93,14 @@ export class EmployeeAddComponent implements OnInit{
 	}
 
 	/* Function used to check qualification forms validation */
-	isQualificationFormValid(): boolean{
+	isQualificationFormValid(): boolean{debugger
 		let isValid = true;
 		this.empQualifications = <FormArray>this.empQualControls['controls'];
-		this.empQualifications.forEach(value => {
+		/*this.empQualifications.forEach(value => {
 			if(!value.valid){
 				isValid = false;
 			}
-		})
+		})*/
 		return isValid;
 	}
 	/* Defining getter for employee skills form controls */
@@ -124,11 +124,11 @@ export class EmployeeAddComponent implements OnInit{
 	isSkillFormValid(): boolean{
 		let isValid = true;
 		this.empSkills = <FormArray>this.empQualControls['controls'];
-		this.empSkills.forEach(value => {
+		/*this.empSkills.forEach(value => {
 			if(!value.valid){
 				isValid = false;
 			}
-		})
+		})*/
 		return isValid;
 	}
 	/* Defining getter for employee projects form controls */
@@ -154,11 +154,11 @@ export class EmployeeAddComponent implements OnInit{
 	isProjectFormValid(): boolean{
 		let isValid = true;
 		this.empProjects = <FormArray>this.empProjectsControls['controls'];
-		this.empProjects.forEach(value => {
+		/*this.empProjects.forEach(value => {
 			if(!value.valid){
 				isValid = false;
 			}
-		})
+		})*/
 		return isValid;
 	}
 

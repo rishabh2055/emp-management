@@ -5,6 +5,7 @@ import {Observable, Subject} from 'rxjs';
 
 import {Departments} from './departments/departments';
 import {Grades} from './grades/grades';
+//import {Users} from './users/users';
 
 const httpHeaders = {
 	headers: new HttpHeaders({'content-type': 'application/json'})
@@ -16,7 +17,11 @@ export class CommonService{
 	currentRoute: string = '';
 	invokeEvent: Subject<any> = new Subject();
 	serverUrl = 'http://localhost:4000/api';
+	currentUrl = '';
 	constructor(private http: HttpClient){}
+	getCurrentUrl(){
+		return this.currentUrl;
+	}
 	callSecondComponentMethod(msg){
 		this.invokeEvent.next(msg);
 	}
@@ -85,5 +90,17 @@ export class CommonService{
 	getAllEmployees(): Observable<Grades[]>{
 		let url = `${this.serverUrl}/employees/list_emp`;
 		return this.http.get<Grades[]>(url, httpHeaders);
+	}
+	submitLogin(postObj): Observable<any>{
+		let url = `${this.serverUrl}/users/login`;
+		return this.http.post(url, postObj, httpHeaders);
+	}
+	submitUser(postObj): Observable<any>{
+		let url = `${this.serverUrl}/users/signup`;
+		return this.http.post(url, postObj, httpHeaders);
+	}
+	getAllUsers(): Observable<any[]>{
+		let url = `${this.serverUrl}/users/list_users`;
+		return this.http.get<any[]>(url, httpHeaders);
 	}
 }

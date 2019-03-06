@@ -1,4 +1,5 @@
-<div class="wrapper">
+
+<div class="wrapper" *ngIf="currentUrl !== '/login'">
 
     <!-- Sidebar -->
     <nav id="sidebar" [ngClass] = "{'active': isSideBarCollapsed}">
@@ -47,6 +48,8 @@
   </div>
 
 </div> 
+
+<router-outlet *ngIf="currentUrl === '/login'"></router-outlet>
 
 <ng-template #menu_submenu_link let-menu="menu">
   <a data-toggle="collapse" (click)="collapseSideMenu(menu)" [attr.aria-expanded]="menu.isCollapsed" class="dropdown-toggle"> 

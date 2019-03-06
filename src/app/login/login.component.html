@@ -1,1 +1,47 @@
-<h1>Login</h1>
+<div id="loginForm" class="container-fluid">
+  <div [hidden]="successMsg === ''" class="alert alert-success" role="alert">
+    Success: {{successMsg}}
+  </div>
+  <div [hidden]="errMsg === ''" class="alert alert-danger" role="alert">
+    Error: {{errMsg}}
+  </div>
+   <div class="container">
+     <div class="row login-panel">
+       <div class="card-wrapper">
+            <div class="card fat">
+              <div class="card-body">
+                <h4 class="card-title">Login</h4>
+
+                <form method="POST" [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+
+                    <input formControlName="email" id="email" type="text" class="form-control" name="email" autofocus="">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password">Password
+                      <a href="javascript:void(0)" class="float-right">
+                        Forgot Password?
+                      </a>
+                    </label>
+                    <input formControlName="password" id="password" type="password" class="form-control show" name="password">
+
+                  </div>
+
+                  <div class="form-group no-margin">
+                    <button type="submit" class="btn btn-outline-success btn-block login-btn">
+                      Login
+                    </button>
+                  </div>
+                  <div class="card-title">Not registered? <a href="">Create an account</a></div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+     </div>
+
+   </div>
+ </div>

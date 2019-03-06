@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   public isCollapsed: boolean = false;
   public isSideBarCollapsed: boolean = false;
   public isUserDropDownCollapsed: boolean = false;
+  private currentUrl: String = '';
   private sideMenuLinks: Array<any> = [
     {id: 1, menu: 'Dashboard', isActive: true, isCollapsed: false, route: '/dashboard', url: 'dashboard', icon: 'dashboard', children: []},
     {id: 2, menu: 'Departments', isActive: false, isCollapsed: false, icon: 'home', children: [
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
   onChangeRoute(){
 		this.router.events.subscribe(events => {
 			if(events instanceof NavigationStart){
+        this.currentUrl = events.url;
 				if(events.url === '/departments'){
 					this.commonService.setCurrentRoute('Department list');
 				}else if(events.url === '/departments/add'){

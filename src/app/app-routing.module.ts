@@ -14,7 +14,7 @@ export const routes: Routes = [
 	{path: 'grades', loadChildren: './grades/grades.module#GradesModule'},
 	{path: 'employees', loadChildren: './employees/employees.module#EmployeesModule'},
 	{path: 'leaves', loadChildren: './leaves/leaves.module#LeavesModule'},
-	{path: 'attendance', loadChildren: './attendance/attendance.module#AttendanceModule'},
+	{path: 'attendance', loadChildren: './attendance/attendance.module#AttendanceModule'}
 ]
 
 @NgModule({

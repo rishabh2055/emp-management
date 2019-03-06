@@ -7,12 +7,12 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 
 @Component({
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.css']
+	templateUrl: './user-add.component.html',
+	styleUrls: ['./users.component.css']
 })
 
-export class LoginComponent implements OnInit{
-	loginFormGroup: FormGroup;
+export class UserAddComponent implements OnInit{
+	usersFormGroup: FormGroup;
 	submitted: boolean = false;
 	successMsg: String = '';
 	errMsg: String = '';
@@ -23,19 +23,19 @@ export class LoginComponent implements OnInit{
 		
 	}
 	ngOnInit(){
-		this.loginFormGroup = this.formBuilder.group({
+		this.usersFormGroup = this.formBuilder.group({
 			email: [''],
 			password: [''],
 		});
 	}
 
 	// convenience getter for easy access to form fields
-    get f() { return this.loginFormGroup.controls; }
+    get f() { return this.usersFormGroup.controls; }
 
     onSubmit(){
     	this.submitted = true;
     	this.spinnerService.show();
-    	this.commonService.submitLogin(this.loginFormGroup.getRawValue()).subscribe(
+    	this.commonService.submitUser(this.usersFormGroup.getRawValue()).subscribe(
 			data => {
 				this.errMsg = '';
 				this.successMsg = data.message;
